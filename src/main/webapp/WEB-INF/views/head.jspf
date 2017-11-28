@@ -1,0 +1,26 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true"%>
+
+
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+    request.setAttribute("basePath",basePath);
+%>
+<script src="${basePath}/static/bootstrap/js/jQuery.js"></script>
+<link rel="stylesheet" href="${basePath}/static/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/bootstrap/css/docs.min.css">
+<link rel="stylesheet" href="/static/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+<script type="text/javascript" src="../static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"
+        charset="UTF-8"></script>
+<script type="text/javascript" src="../static/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"
+        charset="UTF-8"></script>
+<script type="text/javascript" src="../static/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="../static/bootstrap/js/docs.min.js"></script>
+<style type="text/css" src="../static/bootstrap/css/bootstrap.css"></style>
+<link rel="stylesheet" href="../static/bootstrap/css/buttons.css">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>ZYUANYE</title>
+</head>

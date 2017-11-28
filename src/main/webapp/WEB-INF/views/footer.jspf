@@ -1,0 +1,23 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true"%>
+
+<footer class="bs-docs-footer" role="contentinfo" style="margin-top: 10px;">
+    <div class="container">
+
+        <h4>sniffer 将集成一站式监控系统</h4>
+
+        <p>本项目源码开放到github：<a href="https://github.com/zhaochunyu" target="_blank">GitHub 仓库</a></p>
+        <ul class="bs-docs-footer-links muted">
+            <li>当前版本： 0.0.0</li>
+            <li>&middot;</li>
+            <li><a href="mailto:zhaochunyu@qding.me"><strong>chunyu.zhao</strong></a>
+                </address></a></li>
+            <li>&middot;</li>
+            <li><a href="#">2016年10月28日</a></li>
+            <li>&middot;</li>
+
+        </ul>
+
+    </div>
+
+</footer>
+

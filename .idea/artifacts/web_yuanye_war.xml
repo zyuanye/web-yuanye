@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="web-yuanye:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="web-yuanye.war">
+      <element id="artifact" artifact-name="web-yuanye:war exploded" />
+    </root>
+  </artifact>
+</component>
