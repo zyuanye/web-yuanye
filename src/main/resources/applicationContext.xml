@@ -9,43 +9,43 @@
                           http://www.springframework.org/schema/mvc
                           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!--扫描com.workonaproject包，除了com.workonaproject.Controller  -->
-    <context:component-scan base-package="com.yuanye">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+    <!-- 启用注解 -->
+    <context:annotation-config></context:annotation-config>
 
+    <!-- 加载注解 -->
+    <context:component-scan base-package="com.yuanye.service"></context:component-scan>
     <!-- 使用disconf必须添加以下配置 -->
-    <bean id="disconfMgrBean" class="com.baidu.disconf.client.DisconfMgrBean"
-          destroy-method="destroy">
-        <property name="scanPackage" value="com.yuanye"/>
-    </bean>
-    <bean id="disconfMgrBean2" class="com.baidu.disconf.client.DisconfMgrBeanSecond"
-          init-method="init" destroy-method="destroy">
-    </bean>
+    <!-- <bean id="disconfMgrBean" class="com.baidu.disconf.client.DisconfMgrBean"
+           destroy-method="destroy">
+         <property name="scanPackage" value="com.yuanye"/>
+     </bean>
+     <bean id="disconfMgrBean2" class="com.baidu.disconf.client.DisconfMgrBeanSecond"
+           init-method="init" destroy-method="destroy">
+     </bean>
 
-    <!--disconf 托管文件 配置更改会自动reload-->
-    <bean id="configproperties_disconf" class="com.baidu.disconf.client.addons.properties.ReloadablePropertiesFactoryBean">
-        <property name="locations">
-            <list>
-                <value>classpath:/redis-config.properties</value>
-                <value>classpath:/jdbc-mysql.properties</value>
-                <value>classpath:/log4j.properties</value>
-                <value>classpath:/zoo.properties</value>
-            </list>
-        </property>
-    </bean>
-
-
-    <!-- 引入jdbc配置文件 -->
-    <!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+     <!-disconf 托管文件 配置更改会自动reload-->
+    <!-- <bean id="configproperties_disconf" class="com.baidu.disconf.client.addons.properties.ReloadablePropertiesFactoryBean">
          <property name="locations">
              <list>
-                 <value>classpath*:jdbc.properties</value>
+                 <value>classpath:/redis-config.properties</value>
+                 <value>classpath:/jdbc-mysql.properties</value>
+                 <value>classpath:/log4j.properties</value>
+                 <value>classpath:/zoo.properties</value>
              </list>
          </property>
      </bean> -->
+
+
+     <!-- 引入jdbc配置文件 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+         <property name="locations">
+             <list>
+                 <value>classpath:jdbc-mysql.properties</value>
+             </list>
+         </property>
+     </bean>
     <!-- 引入jdbc配置文件 -->
-    <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName"><value>${jdbc.driverClassName}</value></property>
         <property name="url"><value>${jdbc.url}</value></property>
         <property name="username"><value>${jdbc.username}</value></property>
@@ -54,9 +54,21 @@
     </bean>
 
 
-    <!- 事务配置 -->
-    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <!-- 事务配置 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
-    </bean>-->
+    </bean>
+
+    <!-- mapper bean -->
+     <bean id="usermapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.yuanye.dao.mapper.Usermapper"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:com/yuanye/dao/xml/mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath:com/yuanye/dao/xml/UserMapper.xml" />
+    </bean>
 
 </beans>

@@ -5,31 +5,35 @@
          version="3.0"
          metadata-complete="true">
 
-    <display-name>Archetype Created Web Application</display-name>
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:applicationContext*.xml</param-value>
-    </context-param>
+    <!-- Spring配置 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <!-- 指定Spring Bean的配置文件所在目录。默认配置在WEB-INF目录下 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
 
+    <!-- Spring MVC 核心控制器 DispatcherServlet 配置 -->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>
-                classpath*:dispatcher-servlet.xml
-            </param-value>
+            <param-value>classpath:dispatcher-servlet.xml</param-value>
         </init-param>
-        <load-on-startup>0</load-on-startup>
+        <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+     <!--用于设定默认首页-->
+    <!-- <welcome-file-list>
+        <welcom-file>index.jsp</welcom-file>
+    </welcome-file-list>-->
 
 </web-app>

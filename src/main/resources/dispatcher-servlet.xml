@@ -8,16 +8,29 @@
        xsi:schemaLocation="
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
-    http://www.springframework.org/schema/aop
-    http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <!-- 启用spring mvc 注解 -->
+    <mvc:annotation-driven />
 
+    <!-- 设置使用注解的类所在的jar包 -->
+    <context:component-scan base-package="com.yuanye.controller"></context:component-scan>
+
+    <!--配置 页面控制器-->
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+             <property name="prefix" value="/"/>
+             <property name="suffix" value=".jsp" />
+
+       </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+        <property name="basePackage" value="com.yuanye.dao.mapper"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
 
 
 </beans>
