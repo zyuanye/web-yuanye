@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanye.dao.mapper.Usermapper">
+
+
+    <!-- 查询用户信息，根据用户名 -->
+    <select id="findUserinfobyphoneno" parameterType="string" resultType="UserDTO">
+
+            SELECT * from user  WHERE userphoneno = #{userphoneno}
+
+    </select>
+
+    <!-- 对应userDao中的insertUser方法，  -->
+    <insert id="insertUser" parameterType="UserDTO"   >
+
+        insert into user(id, username, password, userphoneno)
+        values(#{id}, #{username}, #{password}, #{userphoneno})
+    </insert>
+
+
+</mapper>  
